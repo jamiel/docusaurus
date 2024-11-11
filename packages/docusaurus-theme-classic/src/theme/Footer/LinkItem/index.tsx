@@ -17,10 +17,12 @@ export default function FooterLinkItem({item}: Props): JSX.Element {
   const {to, href, label, prependBaseUrlToHref, ...props} = item;
   const toUrl = useBaseUrl(to);
   const normalizedHref = useBaseUrl(href, {forcePrependBaseUrl: true});
+  const autoAddBaseUrl = Boolean(prependBaseUrlToHref ?? true);
 
   return (
     <Link
       className="footer__link-item"
+      autoAddBaseUrl={autoAddBaseUrl}
       {...(href
         ? {
             href: prependBaseUrlToHref ? normalizedHref : href,
